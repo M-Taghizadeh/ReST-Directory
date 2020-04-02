@@ -1,0 +1,5 @@
+>>> pip install flask 
+>>> flask-sqlalchemy : orm
+>>> flask-migrate : for database migration
+>>> python-dotenv : for read dotenv files
+>>> mysqlclient : as mysql connector
