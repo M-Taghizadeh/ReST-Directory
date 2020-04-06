@@ -1,0 +1,56 @@
+
+> in rest we havent cookie or session
+
+> but we have some element in any header of requests one of them is 'Authorization' 
+
+> Authorization sent by certain methods, and one of these methods is 'Berar token' => in flask we can use 'JWT tokent'
+
+> we read JWT token in header of any request and Based on that, we recognize the user's identity
+
+> install JWT in flask:
+>>> pip install flask-jwt_extended
+
+> import and use in app.py [we should set SECRET_KEY for our app]
+>> from flask_jwt_extended import JWTManager
+>> jwt_manager = JWTManager(app) 
+
+-------------------------------------------------------------------------
+> 2 token in login:
+
+1 - access_token :
+> create :
+>> access_token = create_access_token(identity=user.username, fresh=True) # 15 min expires_delta
+> parameters:
+    > identity : identity of access_token we can use that for identify user 
+    > fresh : for first user login we can set that True and in next access token (with useing refresh_token)
+      we can set that with Flase value
+    > expires_delta : 15 min(by default) we can set that False
+
+2 - refresh_token : we use that for create new access token 
+> create:
+refresh_token = create_refresh_token(identity=user.username) # 1 month expires_delta
+> parameters:
+    > identity : identity of access_token we can use that for identify user 
+    > expires_delta
+-------------------------------------------------------------------------
+
+> example access/referesh token [check in https://jwt.io/]
+
+{
+  "iat": 1586197539,
+  "nbf": 1586197539,
+  "jti": "1fc6f8bb-56c8-496a-bd3d-11773a4b3d96",
+  "exp": 1586198439, ---> 15 min
+  "identity": "mohammad", ---> username = mohammad
+  "fresh": true, ---> first_login
+  "type": "access" ---> access_token
+}
+
+{
+  "iat": 1586197539,
+  "nbf": 1586197539,
+  "jti": "d845f623-a1f7-464c-8b5c-f2682cf9201f",
+  "exp": 1588789539, ---> 31 days
+  "identity": "mohammad", ---> username = mohammad
+  "type": "refresh" ---> refresh_token
+}
