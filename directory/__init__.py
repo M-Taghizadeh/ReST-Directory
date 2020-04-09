@@ -18,6 +18,8 @@ def home():
 
 # Import Blueprints:
 from directory.apps.users_app import users
+from directory.apps.sites_app import sites
 
 # Register Blueprints:
 app.register_blueprint(users)
+app.register_blueprint(sites)

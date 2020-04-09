@@ -7,16 +7,18 @@ from directory import db
 
 from . import users
 from .models import User
+from directory.utils.request import json_only
 
 
 @users.route("/", methods=["POST"])
+@json_only
 def create_user():
 
-    # validation:
-    # request.is_json
-    # request.get_json
-    if not request.is_json:
-        return {"Error" : "Only Json!"}, 400
+    # # validation:
+    # # request.is_json
+    # # request.get_json
+    # if not request.is_json:
+    #     return {"Error" : "Only Json!"}, 400
 
     args = request.get_json()
     try:
@@ -35,12 +37,13 @@ def create_user():
     return {"message" : "Account Create Successfuly."}, 201
 
 @users.route("auth", methods=["POST"])
+@json_only
 def login():
-    # validation:
-    # request.is_json
-    # request.get_json
-    if not request.is_json:
-        return {"Error" : "Only Json!"}, 400
+    # # validation:
+    # # request.is_json
+    # # request.get_json
+    # if not request.is_json:
+    #     return {"Error" : "Only Json!"}, 400
 
     args = request.get_json()
 
@@ -82,3 +85,4 @@ def get_user():
     user = User.query.filter(User.username.ilike(identity)).first()
     # # return {"msg" : "Missing Auth Header..!"}, 401
     return {"username" : user.username}, 200
+    

@@ -3,7 +3,7 @@
 
 > but we have some element in any header of requests one of them is 'Authorization' 
 
-> Authorization sent by certain methods, and one of these methods is 'Berar token' => in flask we can use 'JWT tokent'
+> Authorization sent by certain methods, and one of these methods is 'Bearer token' => in flask we can use 'JWT tokent'
 
 > we read JWT token in header of any request and Based on that, we recognize the user's identity
 
