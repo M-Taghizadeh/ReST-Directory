@@ -86,3 +86,26 @@ def get_user():
     # # return {"msg" : "Missing Auth Header..!"}, 401
     return {"username" : user.username}, 200
     
+
+@users.route("/", methods=["PATCH"])
+@jwt_required
+@json_only
+def modify_user():
+    # get json :
+    args = request.get_json()
+    
+    # get username(identity) of user
+    identity = get_jwt_identity()  
+    print(identity)
+    user = User.query.filter(User.username.ilike(identity)).first()
+
+    # change password:
+    new_password = args.get("password")
+    try:
+        user.password = new_password
+        db.session.commit()
+    except ValueError as e:
+        db.session.rollback()
+        return {"error" : str(e)}, 400 # bad request
+
+    return {}, 204 # response => no content
