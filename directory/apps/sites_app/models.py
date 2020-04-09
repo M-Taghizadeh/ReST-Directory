@@ -4,7 +4,6 @@ from sqlalchemy import Column, Integer, DateTime, String, Text
 from sqlalchemy.orm import validates
 from directory import db
 
-
 class Site(db.Model):
     __tablename__ = 'sites'
 

@@ -1,0 +1,15 @@
+Endpoint                    Methods  Rule
+--------------------------  -------  -------------------------
+home                        GET      /
+sites.create_site           POST     /sites/
+sites.delete_site           DELETE   /sites/<int:site_id>
+sites.modify_icon           PATCH    /sites/<int:site_id>/icon
+sites.modify_site           PATCH    /sites/<int:site_id>
+sites.read_site             GET      /sites/<int:site_id>
+sites.read_sites            GET      /sites/
+static                      GET      /static/<path:filename>
+users.create_user           POST     /users/
+users.get_new_access_token  PUT      /users/auth
+users.get_user              GET      /users/
+users.login                 POST     /users/auth
+users.modify_user           PATCH    /users/
